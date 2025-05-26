@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Kontraksi Otot</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
+    .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
+    h1, h2 { text-align: center; }
+    .menu, .materi, .quiz, .hasil { display: none; }
+    .question { margin-bottom: 20px; }
+    button { padding: 10px 20px; margin: 10px 0; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="menu">
+    <h1>Selamat Datang di Quiz Kontraksi Otot</h1>
+    <button onclick="showPage('materi')">Lihat Materi</button>
+    <button onclick="showPage('quiz')">Mulai Kuis</button>
+  </div>
+
+  <div class="materi">
+    <h2>Materi Singkat</h2>
+    <p>Materi mencakup proses kontraksi otot: peran asetilkolin, Ca²⁺, ATP, troponin, tropomiosin, dan T-tubulus dalam kontraksi dan relaksasi otot. Perlu dipahami bagaimana potensial aksi memicu pelepasan kalsium dan bagaimana kalsium memungkinkan pembentukan jembatan silang antara aktin dan miosin. ATP diperlukan baik untuk kontraksi maupun relaksasi.</p>
+    <button onclick="showPage('menu')">Kembali ke Menu</button>
+    <button onclick="showPage('quiz')">Mulai Kuis</button>
+  </div>
+
+  <div class="quiz">
+    <h2>Kuis Kontraksi Otot</h2>
+    <form id="quizForm"></form>
+    <button onclick="submitQuiz()">Kirim Jawaban</button>
+    <button onclick="showPage('menu')">Kembali ke Menu</button>
+  </div>
+
+  <div class="hasil">
+    <h2>Hasil Kuis</h2>
+    <p id="scoreText"></p>
+    <button onclick="showPage('menu')">Kembali ke Menu</button>
+  </div>
+</div>
+
+<audio autoplay loop>
+  <source src="musik-latar.mp3" type="audio/mpeg">
+  Browser Anda tidak mendukung audio.
+</audio>
+
+<script>
+  const soal = [
+    {
+      t: "Apa yang akan terjadi jika reseptor asetilkolin pada membran otot rusak atau tidak berfungsi?",
+      o: ["A. Ion kalsium tidak dilepaskan dari retikulum sarkoplasma", "B. Potensial aksi tidak dapat terbentuk di membran otot", "C. ATP tidak dapat dihasilkan oleh sel otot", "D. Tropomiosin langsung membuka situs ikat miosin"],
+      j: "B"
+    },
+    {
+      t: "Fungsi utama ion Ca²⁺ dalam proses kontraksi otot adalah…",
+      o: ["A. Memecah ATP untuk menghasilkan energi", "B. Menstabilkan membran sel otot", "C. Berikatan dengan troponin untuk membuka situs ikat aktin", "D. Menyebabkan pelepasan asetilkolin dari neuron motorik"],
+      j: "C"
+    },
+    {
+      t: "Proses kontraksi otot akan berhenti ketika…",
+      o: ["A. Semua ATP dipecah menjadi ADP dan fosfat", "B. Tropomiosin menutupi situs ikat pada aktin", "C. Potensial aksi terus berjalan di T-tubulus", "D. Kalsium terus berada di sitosol"],
+      j: "B"
+    },
+    {
+      t: "Jika retikulum sarkoplasma gagal menyimpan kembali Ca²⁺ setelah kontraksi, maka…",
+      o: ["A. Asetilkolin tidak dapat dilepaskan", "B. Sel otot akan kehilangan energi", "C. Otot tidak akan bisa relaksasi", "D. Jembatan silang tidak bisa terbentuk"],
+      j: "C"
+    },
+    {
+      t: "Fungsi ATP dalam proses relaksasi otot adalah untuk…",
+      o: ["A. Meningkatkan pelepasan asetilkolin", "B. Membentuk jembatan silang antara aktin dan miosin", "C. Memompa Ca²⁺ kembali ke dalam retikulum sarkoplasma", "D. Menghancurkan troponin agar tidak mengikat kalsium"],
+      j: "C"
+    },
+    {
+      t: "Pada tahap awal, asetilkolin bekerja dengan cara…",
+      o: ["A. Menstimulasi pelepasan Ca²⁺ dari otot", "B. Berikatan dengan aktin dan miosin", "C. Memicu terbentuknya potensial aksi di membran otot", "D. Mengaktifkan enzim ATPase"],
+      j: "C"
+    },
+    {
+      t: "Tropomiosin berfungsi untuk…",
+      o: ["A. Mengaktifkan troponin saat tidak ada Ca²⁺", "B. Menutup atau membuka situs ikat miosin pada aktin", "C. Mengubah bentuk miosin selama kontraksi", "D. Memompa ion kalsium ke dalam SR"],
+      j: "B"
+    },
+    {
+      t: "Apa peran T-tubulus dalam kontraksi otot?",
+      o: ["A. Menyimpan ATP untuk digunakan saat kontraksi", "B. Mengangkut Ca²⁺ ke dalam inti sel", "C. Menyebarkan potensial aksi ke bagian dalam sel otot", "D. Menstabilkan jembatan silang"],
+      j: "C"
+    },
+    {
+      t: "Jika ATP tidak tersedia sama sekali dalam sel otot, maka…",
+      o: ["A. Kalsium akan langsung keluar dari SR", "B. Otot tidak bisa membentuk jembatan silang", "C. Otot akan tetap dalam keadaan kontraksi", "D. Troponin tidak bisa berikatan dengan Ca²⁺"],
+      j: "C"
+    },
+    {
+      t: "Mengapa miosin perlu menghidrolisis ATP saat berikatan dengan aktin?",
+      o: ["A. Untuk mengaktifkan troponin", "B. Untuk mengubah bentuk tropomiosin", "C. Untuk menghasilkan energi menarik filamen aktin", "D. Untuk menghentikan pelepasan asetilkolin"],
+      j: "C"
+    }
+  ];
+
+  function showPage(page) {
+    document.querySelectorAll('.menu, .materi, .quiz, .hasil').forEach(div => div.style.display = 'none');
+    document.querySelector('.' + page).style.display = 'block';
+
+    if (page === 'quiz') renderQuiz();
+  }
+
+  function renderQuiz() {
+    const form = document.getElementById('quizForm');
+    form.innerHTML = '';
+    soal.forEach((s, i) => {
+      const q = document.createElement('div');
+      q.className = 'question';
+      q.innerHTML = `<p>${i + 1}. ${s.t}</p>` + s.o.map((opt, idx) =>
+        `<label><input type="radio" name="q${i}" value="${opt[0]}"> ${opt}</label><br>`
+      ).join('');
+      form.appendChild(q);
+    });
+  }
+
+  function submitQuiz() {
+    const form = document.getElementById('quizForm');
+    let score = 0;
+    soal.forEach((s, i) => {
+      const answer = form[`q${i}`]?.value;
+      if (answer === s.j) score++;
+    });
+
+    document.getElementById('scoreText').textContent = `Skor Anda: ${score} dari ${soal.length}`;
+    showPage('hasil');
+  }
+
+  showPage('menu');
+</script>
+</body>
+</html>
