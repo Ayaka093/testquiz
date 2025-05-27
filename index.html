@@ -110,6 +110,11 @@ Sistem otot memungkinkan tubuh untuk bergerak melalui proses kontraksi dan relak
   </div>
 </div>
 
+<audio id="bgm" loop>
+  <source src="musik-latar.mp3" type="audio/mpeg">
+  Browser Anda tidak mendukung audio.
+</audio>
+
 <script>
   const soal = [
     {
@@ -201,6 +206,14 @@ Sistem otot memungkinkan tubuh untuk bergerak melalui proses kontraksi dan relak
   }
 
   showPage('menu');
+
+document.addEventListener('click', function () {
+ var audio = document.getElementById('bgm');
+  if (audio.paused) {
+    audio.play();
+  }
+}, { once: true });
+
 </script>
 </body>
 </html>
