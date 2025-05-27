@@ -4,14 +4,39 @@
   <meta charset="UTF-8">
   <title>Quiz Kontraksi Otot</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
-    .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
-    h1, h2 { text-align: center; }
-    .menu, .materi, .quiz, .hasil { display: none; }
-    .question { margin-bottom: 20px; }
-    button { padding: 10px 20px; margin-top: 20px; display: block; }
-    label { display: block; margin: 5px 0; }
-    .materi p, .materi li { margin-bottom: 10px; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .menu, .materi, .quiz, .hasil {
+      display: none;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px 5px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -23,25 +48,59 @@
   </div>
 
   <div class="materi">
-    <h2>Materi Singkat</h2>
-    <p><strong>Sarkomer</strong> adalah unit kontraksi otot yang terdiri dari filamen aktin dan miosin. Filamen tipis (aktin) diatur oleh tropomiosin dan troponin, sedangkan filamen tebal (miosin) memiliki kepala yang mengikat aktin dan menggunakan ATP untuk bergerak.</p>
-    <p><strong>Mekanisme Kontraksi:</strong></p>
-    <ul>
-      <li>Neuron motorik melepaskan ACh → merangsang sarkolema</li>
-      <li>Potensial aksi menjalar lewat T-tubulus → Ca²⁺ dilepaskan dari SR</li>
-      <li>Ca²⁺ berikatan dengan troponin → membuka situs ikat aktin</li>
-      <li>Kepala miosin menarik aktin (dengan energi dari ATP)</li>
-    </ul>
-    <p><strong>Relaksasi:</strong> Ca²⁺ dipompa kembali ke SR menggunakan ATP → tropomiosin menutup kembali situs aktin → otot relaks.</p>
-    <p><strong>Gangguan:</strong> Myasthenia Gravis (kerusakan reseptor ACh), Hipertermia Maligna (mutasi saluran Ca²⁺), Distrofi Otot (kerusakan protein otot).</p>
+    <h2>Materi Kontraksi dan Relaksasi Otot</h2>
+    <div style="text-align: justify; white-space: pre-wrap;">
+# BAB 3: MEKANISME KONTRAKSI DAN RELAKSASI OTOT
+
+## 3.1 Pendahuluan
+Sistem otot memungkinkan tubuh untuk bergerak melalui proses kontraksi dan relaksasi. Otot rangka bekerja di bawah kendali sistem saraf somatik, dan melibatkan protein kontraktil, ion kalsium (Ca²⁺), serta energi dari ATP.
+
+## 3.2 Struktur Molekuler Otot Rangka
+### 3.2.1 Sarkomer
+- Unit terkecil yang dapat berkontraksi.
+- Komponen utama: Filamen tipis (aktin), filamen tebal (miosin), tropomiosin, troponin.
+
+### 3.2.2 Sistem Membran
+- **Sarkolema**: memiliki reseptor ACh.
+- **T-tubulus**: menyebarkan potensial aksi ke dalam sel.
+- **Retikulum Sarkoplasma (SR)**: menyimpan dan melepaskan Ca²⁺.
+
+## 3.3 Mekanisme Kontraksi
+- **Stimulasi saraf** melepaskan ACh → mengikat reseptor → depolarisasi → pelepasan Ca²⁺.
+- **Ca²⁺** berikatan dengan troponin → membuka situs ikat aktin.
+- **Siklus jembatan silang**:
+  1. Kepala miosin mengikat aktin.
+  2. Power stroke menarik aktin.
+  3. ATP baru melepaskan kepala miosin.
+  4. Hidrolisis ATP mengembalikan posisi awal miosin.
+
+## 3.4 Relaksasi Otot
+- Ca²⁺ dipompa kembali ke SR oleh Ca²⁺-ATPase.
+- Tanpa Ca²⁺, tropomiosin menutup situs ikat → relaksasi.
+
+## 3.5 Peran ATP
+- Untuk: detasemen miosin, pemompaan Ca²⁺, dan rekocking miosin.
+- Defisiensi ATP → rigor mortis (otot kaku).
+
+## 3.6 Gangguan Sistem Otot
+- **Myasthenia Gravis**: rusaknya reseptor ACh.
+- **Malignant Hyperthermia**: mutasi kanal Ca²⁺.
+- **Distrofi Otot**: kerusakan protein otot.
+
+## 3.7 Aplikasi Klinis
+- **Obat relaksan otot**: menghambat ACh atau pelepasan Ca²⁺.
+- **Terapi fisik**: meningkatkan efisiensi kerja otot.
+
+    </div>
     <button onclick="showPage('menu')">Kembali ke Menu</button>
     <button onclick="startQuiz()">Mulai Kuis</button>
   </div>
 
   <div class="quiz">
     <h2>Kuis Kontraksi Otot</h2>
-    <div id="quizContainer"></div>
-    <button id="nextBtn" onclick="nextQuestion()">Selanjutnya</button>
+    <div class="question" id="questionBox"></div>
+    <button onclick="nextQuestion()">Berikutnya</button>
+    <button onclick="showPage('menu')">Kembali ke Menu</button>
   </div>
 
   <div class="hasil">
@@ -50,11 +109,6 @@
     <button onclick="showPage('menu')">Kembali ke Menu</button>
   </div>
 </div>
-
-<audio id="bgm" loop>
-  <source src="musik-latar.mp3" type="audio/mpeg">
-  Browser Anda tidak mendukung audio.
-</audio>
 
 <script>
   const soal = [
@@ -67,8 +121,47 @@
       t: "Fungsi utama ion Ca²⁺ dalam proses kontraksi otot adalah…",
       o: ["A. Memecah ATP untuk menghasilkan energi", "B. Menstabilkan membran sel otot", "C. Berikatan dengan troponin untuk membuka situs ikat aktin", "D. Menyebabkan pelepasan asetilkolin dari neuron motorik"],
       j: "C"
+    },
+    {
+      t: "Proses kontraksi otot akan berhenti ketika…",
+      o: ["A. Semua ATP dipecah menjadi ADP dan fosfat", "B. Tropomiosin menutupi situs ikat pada aktin", "C. Potensial aksi terus berjalan di T-tubulus", "D. Kalsium terus berada di sitosol"],
+      j: "B"
+    },
+    {
+      t: "Jika retikulum sarkoplasma gagal menyimpan kembali Ca²⁺ setelah kontraksi, maka…",
+      o: ["A. Asetilkolin tidak dapat dilepaskan", "B. Sel otot akan kehilangan energi", "C. Otot tidak akan bisa relaksasi", "D. Jembatan silang tidak bisa terbentuk"],
+      j: "C"
+    },
+    {
+      t: "Fungsi ATP dalam proses relaksasi otot adalah untuk…",
+      o: ["A. Meningkatkan pelepasan asetilkolin", "B. Membentuk jembatan silang antara aktin dan miosin", "C. Memompa Ca²⁺ kembali ke dalam retikulum sarkoplasma", "D. Menghancurkan troponin agar tidak mengikat kalsium"],
+      j: "C"
+    },
+    {
+      t: "Pada tahap awal, asetilkolin bekerja dengan cara…",
+      o: ["A. Menstimulasi pelepasan Ca²⁺ dari otot", "B. Berikatan dengan aktin dan miosin", "C. Memicu terbentuknya potensial aksi di membran otot", "D. Mengaktifkan enzim ATPase"],
+      j: "C"
+    },
+    {
+      t: "Tropomiosin berfungsi untuk…",
+      o: ["A. Mengaktifkan troponin saat tidak ada Ca²⁺", "B. Menutup atau membuka situs ikat miosin pada aktin", "C. Mengubah bentuk miosin selama kontraksi", "D. Memompa ion kalsium ke dalam SR"],
+      j: "B"
+    },
+    {
+      t: "Apa peran T-tubulus dalam kontraksi otot?",
+      o: ["A. Menyimpan ATP untuk digunakan saat kontraksi", "B. Mengangkut Ca²⁺ ke dalam inti sel", "C. Menyebarkan potensial aksi ke bagian dalam sel otot", "D. Menstabilkan jembatan silang"],
+      j: "C"
+    },
+    {
+      t: "Jika ATP tidak tersedia sama sekali dalam sel otot, maka…",
+      o: ["A. Kalsium akan langsung keluar dari SR", "B. Otot tidak bisa membentuk jembatan silang", "C. Otot akan tetap dalam keadaan kontraksi", "D. Troponin tidak bisa berikatan dengan Ca²⁺"],
+      j: "C"
+    },
+    {
+      t: "Mengapa miosin perlu menghidrolisis ATP saat berikatan dengan aktin?",
+      o: ["A. Untuk mengaktifkan troponin", "B. Untuk mengubah bentuk tropomiosin", "C. Untuk menghasilkan energi menarik filamen aktin", "D. Untuk menghentikan pelepasan asetilkolin"],
+      j: "C"
     }
-    // Tambahkan soal lainnya sesuai kebutuhan
   ];
 
   let current = 0;
@@ -88,45 +181,27 @@
 
   function renderQuestion() {
     const q = soal[current];
-    const container = document.getElementById('quizContainer');
-    container.innerHTML = `<div class="question">
-      <p>${current + 1}. ${q.t}</p>
-      ${q.o.map(opt => `<label><input type="radio" name="q" value="${opt[0]}"> ${opt}</label>`).join('')}
-    </div>`;
+    const box = document.getElementById('questionBox');
+    box.innerHTML = `<p>${current + 1}. ${q.t}</p>` + q.o.map((opt, idx) =>
+      `<label><input type="radio" name="q" value="${opt[0]}"> ${opt}</label><br>`
+    ).join('');
   }
 
   function nextQuestion() {
     const selected = document.querySelector('input[name="q"]:checked');
-    if (!selected) {
-      alert("Silakan pilih jawaban terlebih dahulu.");
-      return;
-    }
+    if (!selected) return alert("Pilih jawaban terlebih dahulu!");
     if (selected.value === soal[current].j) score++;
     current++;
     if (current < soal.length) {
       renderQuestion();
     } else {
-      showResult();
+      document.getElementById('scoreText').textContent = `Skor Anda: ${score} dari ${soal.length}`;
+      showPage('hasil');
     }
-  }
-
-  function showResult() {
-    document.getElementById('scoreText').textContent = `Skor Anda: ${score} dari ${soal.length}`;
-    showPage('hasil');
   }
 
   showPage('menu');
-
-  document.addEventListener('click', function () {
-    const audio = document.getElementById('bgm');
-    if (audio.paused) {
-      audio.play();
-    }
-  }, { once: true });
 </script>
 </body>
 </html>
 
-
-</body>
-</html>
