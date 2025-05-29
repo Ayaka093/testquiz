@@ -16,23 +16,33 @@
       padding: 20px;
       border-radius: 10px;
     }
-    h1, h2 {
+    h1 {
       text-align: center;
+      font-size: 36px;
+    }
+    h2 {
+      text-align: center;
+      font-size: 30px;
     }
     .menu, .materi, .quiz, .hasil {
       display: none;
     }
     .question {
       margin-bottom: 20px;
+      font-size: 20px;
+    }
+    label {
+      font-size: 18px;
     }
     button {
-      padding: 10px 20px;
+      padding: 14px 28px;
       margin: 10px 5px;
       border: none;
       background-color: #007bff;
       color: white;
       border-radius: 5px;
       cursor: pointer;
+      font-size: 18px;
     }
     button:hover {
       background-color: #0056b3;
@@ -49,7 +59,8 @@
 
   <div class="materi">
     <h2>Materi Kontraksi dan Relaksasi Otot</h2>
-    <div style="text-align: justify; white-space: pre-wrap;">
+    <div style="text-align: justify; white-space: pre-wrap; font-size: 16px;">
+<!-- materi tetap -->
 BAB 3: MEKANISME KONTRAKSI DAN RELAKSASI OTOT
 
 3.1 Pendahuluan
@@ -105,7 +116,7 @@ Sistem otot memungkinkan tubuh untuk bergerak melalui proses kontraksi dan relak
 
   <div class="hasil">
     <h2>Hasil Kuis</h2>
-    <p id="scoreText"></p>
+    <p id="scoreText" style="font-size: 22px; text-align:center;"></p>
     <button onclick="showPage('menu')">Kembali ke Menu</button>
   </div>
 </div>
@@ -117,56 +128,16 @@ Sistem otot memungkinkan tubuh untuk bergerak melalui proses kontraksi dan relak
 
 <script>
   const soal = [
-    {
-      t: "Apa yang akan terjadi jika reseptor asetilkolin pada membran otot rusak atau tidak berfungsi?",
-      o: ["A. Ion kalsium tidak dilepaskan dari retikulum sarkoplasma", "B. Potensial aksi tidak dapat terbentuk di membran otot", "C. ATP tidak dapat dihasilkan oleh sel otot", "D. Tropomiosin langsung membuka situs ikat miosin"],
-      j: "B"
-    },
-    {
-      t: "Fungsi utama ion Ca²⁺ dalam proses kontraksi otot adalah…",
-      o: ["A. Memecah ATP untuk menghasilkan energi", "B. Menstabilkan membran sel otot", "C. Berikatan dengan troponin untuk membuka situs ikat aktin", "D. Menyebabkan pelepasan asetilkolin dari neuron motorik"],
-      j: "C"
-    },
-    {
-      t: "Proses kontraksi otot akan berhenti ketika…",
-      o: ["A. Semua ATP dipecah menjadi ADP dan fosfat", "B. Tropomiosin menutupi situs ikat pada aktin", "C. Potensial aksi terus berjalan di T-tubulus", "D. Kalsium terus berada di sitosol"],
-      j: "B"
-    },
-    {
-      t: "Jika retikulum sarkoplasma gagal menyimpan kembali Ca²⁺ setelah kontraksi, maka…",
-      o: ["A. Asetilkolin tidak dapat dilepaskan", "B. Sel otot akan kehilangan energi", "C. Otot tidak akan bisa relaksasi", "D. Jembatan silang tidak bisa terbentuk"],
-      j: "C"
-    },
-    {
-      t: "Fungsi ATP dalam proses relaksasi otot adalah untuk…",
-      o: ["A. Meningkatkan pelepasan asetilkolin", "B. Membentuk jembatan silang antara aktin dan miosin", "C. Memompa Ca²⁺ kembali ke dalam retikulum sarkoplasma", "D. Menghancurkan troponin agar tidak mengikat kalsium"],
-      j: "C"
-    },
-    {
-      t: "Pada tahap awal, asetilkolin bekerja dengan cara…",
-      o: ["A. Menstimulasi pelepasan Ca²⁺ dari otot", "B. Berikatan dengan aktin dan miosin", "C. Memicu terbentuknya potensial aksi di membran otot", "D. Mengaktifkan enzim ATPase"],
-      j: "C"
-    },
-    {
-      t: "Tropomiosin berfungsi untuk…",
-      o: ["A. Mengaktifkan troponin saat tidak ada Ca²⁺", "B. Menutup atau membuka situs ikat miosin pada aktin", "C. Mengubah bentuk miosin selama kontraksi", "D. Memompa ion kalsium ke dalam SR"],
-      j: "B"
-    },
-    {
-      t: "Apa peran T-tubulus dalam kontraksi otot?",
-      o: ["A. Menyimpan ATP untuk digunakan saat kontraksi", "B. Mengangkut Ca²⁺ ke dalam inti sel", "C. Menyebarkan potensial aksi ke bagian dalam sel otot", "D. Menstabilkan jembatan silang"],
-      j: "C"
-    },
-    {
-      t: "Jika ATP tidak tersedia sama sekali dalam sel otot, maka…",
-      o: ["A. Kalsium akan langsung keluar dari SR", "B. Otot tidak bisa membentuk jembatan silang", "C. Otot akan tetap dalam keadaan kontraksi", "D. Troponin tidak bisa berikatan dengan Ca²⁺"],
-      j: "C"
-    },
-    {
-      t: "Mengapa miosin perlu menghidrolisis ATP saat berikatan dengan aktin?",
-      o: ["A. Untuk mengaktifkan troponin", "B. Untuk mengubah bentuk tropomiosin", "C. Untuk menghasilkan energi menarik filamen aktin", "D. Untuk menghentikan pelepasan asetilkolin"],
-      j: "C"
-    }
+    { t: "Apa yang akan terjadi jika reseptor asetilkolin pada membran otot rusak atau tidak berfungsi?", o: ["A. Ion kalsium tidak dilepaskan dari retikulum sarkoplasma", "B. Potensial aksi tidak dapat terbentuk di membran otot", "C. ATP tidak dapat dihasilkan oleh sel otot", "D. Tropomiosin langsung membuka situs ikat miosin"], j: "B" },
+    { t: "Fungsi utama ion Ca²⁺ dalam proses kontraksi otot adalah…", o: ["A. Memecah ATP untuk menghasilkan energi", "B. Menstabilkan membran sel otot", "C. Berikatan dengan troponin untuk membuka situs ikat aktin", "D. Menyebabkan pelepasan asetilkolin dari neuron motorik"], j: "C" },
+    { t: "Proses kontraksi otot akan berhenti ketika…", o: ["A. Semua ATP dipecah menjadi ADP dan fosfat", "B. Tropomiosin menutupi situs ikat pada aktin", "C. Potensial aksi terus berjalan di T-tubulus", "D. Kalsium terus berada di sitosol"], j: "B" },
+    { t: "Jika retikulum sarkoplasma gagal menyimpan kembali Ca²⁺ setelah kontraksi, maka…", o: ["A. Asetilkolin tidak dapat dilepaskan", "B. Sel otot akan kehilangan energi", "C. Otot tidak akan bisa relaksasi", "D. Jembatan silang tidak bisa terbentuk"], j: "C" },
+    { t: "Fungsi ATP dalam proses relaksasi otot adalah untuk…", o: ["A. Meningkatkan pelepasan asetilkolin", "B. Membentuk jembatan silang antara aktin dan miosin", "C. Memompa Ca²⁺ kembali ke dalam retikulum sarkoplasma", "D. Menghancurkan troponin agar tidak mengikat kalsium"], j: "C" },
+    { t: "Pada tahap awal, asetilkolin bekerja dengan cara…", o: ["A. Menstimulasi pelepasan Ca²⁺ dari otot", "B. Berikatan dengan aktin dan miosin", "C. Memicu terbentuknya potensial aksi di membran otot", "D. Mengaktifkan enzim ATPase"], j: "C" },
+    { t: "Tropomiosin berfungsi untuk…", o: ["A. Mengaktifkan troponin saat tidak ada Ca²⁺", "B. Menutup atau membuka situs ikat miosin pada aktin", "C. Mengubah bentuk miosin selama kontraksi", "D. Memompa ion kalsium ke dalam SR"], j: "B" },
+    { t: "Apa peran T-tubulus dalam kontraksi otot?", o: ["A. Menyimpan ATP untuk digunakan saat kontraksi", "B. Mengangkut Ca²⁺ ke dalam inti sel", "C. Menyebarkan potensial aksi ke bagian dalam sel otot", "D. Menstabilkan jembatan silang"], j: "C" },
+    { t: "Jika ATP tidak tersedia sama sekali dalam sel otot, maka…", o: ["A. Kalsium akan langsung keluar dari SR", "B. Otot tidak bisa membentuk jembatan silang", "C. Otot akan tetap dalam keadaan kontraksi", "D. Troponin tidak bisa berikatan dengan Ca²⁺"], j: "C" },
+    { t: "Mengapa miosin perlu menghidrolisis ATP saat berikatan dengan aktin?", o: ["A. Untuk mengaktifkan troponin", "B. Untuk mengubah bentuk tropomiosin", "C. Untuk menghasilkan energi menarik filamen aktin", "D. Untuk menghentikan pelepasan asetilkolin"], j: "C" }
   ];
 
   let current = 0;
@@ -187,7 +158,7 @@ Sistem otot memungkinkan tubuh untuk bergerak melalui proses kontraksi dan relak
   function renderQuestion() {
     const q = soal[current];
     const box = document.getElementById('questionBox');
-    box.innerHTML = `<p>${current + 1}. ${q.t}</p>` + q.o.map((opt, idx) =>
+    box.innerHTML = `<p><strong>${current + 1}. ${q.t}</strong></p>` + q.o.map((opt, idx) =>
       `<label><input type="radio" name="q" value="${opt[0]}"> ${opt}</label><br>`
     ).join('');
   }
@@ -207,14 +178,12 @@ Sistem otot memungkinkan tubuh untuk bergerak melalui proses kontraksi dan relak
 
   showPage('menu');
 
-document.addEventListener('click', function () {
- var audio = document.getElementById('bgm');
-  if (audio.paused) {
-    audio.play();
-  }
-}, { once: true });
-
+  document.addEventListener('click', function () {
+    var audio = document.getElementById('bgm');
+    if (audio.paused) {
+      audio.play();
+    }
+  }, { once: true });
 </script>
 </body>
 </html>
-
